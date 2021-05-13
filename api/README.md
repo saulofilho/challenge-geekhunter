@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/3acb7c5c97797681dd7c/maintainability)](https://codeclimate.com/github/saulofilho/challenge-geekhunter/maintainability)
+
 # Matches GeekHunter API Rest
 
 Backend using NodeJS, MongoDB and Docker.
