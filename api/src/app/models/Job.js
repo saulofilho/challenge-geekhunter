@@ -1,0 +1,23 @@
+const mongoose = require('mongoose');
+
+const JobSchema = new mongoose.Schema(
+  {
+    id: {
+      type: Number,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    technologies: {
+      type: [{}],
+      required: true,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
+
+module.exports = mongoose.model('Job', JobSchema);

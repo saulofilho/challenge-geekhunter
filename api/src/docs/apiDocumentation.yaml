@@ -1,0 +1,93 @@
+# https://editor.swagger.io/
+openapi: 3.0.0
+info:
+  title: Food API
+  description: A scrapping bot on https://world.openfoodfacts.org/ using node, mongo and docker.
+  version: 0.1.9
+servers:
+  - url: http://localhost:3333/
+    description: Local server.
+  - url: http://api.fitnessfood.com
+    description: Production server.
+paths:
+  /:
+    get:
+      summary: Returns a 200 status.
+      description: Displayed a message.
+      responses:
+        '200':
+          description: 'Fullstack Challenge 20201026'
+        '500':
+          description: 'error'
+  /products:
+    get:
+      summary: Returns a list of products.
+      description: Data saved on MongoDB by the scrapper will be displayed on this endpoint.
+      responses:
+        '200':
+          description: A JSON array of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /product/{code}:
+    get:
+      summary: Returns a single product.
+      description: Here we going to get just one product by the code params.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: array
+            items:
+              type: object
+      responses:
+        '200':
+          description: A single product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    Product:
+      properties:
+        barcode:
+          type: string
+        status:
+          type: string
+          enum:
+          - "imported"
+          - "draft"
+          default: "imported"
+        imported_t:
+          type: integer
+          format: "date-time"
+        url:
+          type: string
+        product_name:
+          type: string
+        quantity:
+          type: string
+        categories:
+          type: string
+        packaging:
+          type: string
+        brands:
+          type: string
+        image_url:
+          type: string
+      required:
+        - barcode
+        - status
+        - imported_t
+        - url
+        - product_name
+        - quantity
+        - categories
+        - packaging
+        - brands
+        - image_url

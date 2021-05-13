@@ -1,0 +1,61 @@
+const axios = require('axios');
+
+const Job = require('../models/Job');
+
+class JobController {
+  async index(req, res) {
+    const job = await Job.find({ id: req.params.id });
+
+    if (job === undefined || job.length == 0) {
+      res.json({ error: 'Data not found!' });
+    }
+
+    return res.json(job);
+  }
+
+  async indexAll(req, res) {
+    const jobs = await Job.find()
+      .sort({ id: 'asc' })
+      .limit(100);
+
+    return res.json(jobs);
+  }
+
+  async store(req, res) {
+    const apiRequest = await axios
+      .get(`https://geekhunter-recruiting.s3.amazonaws.com/code_challenge.json`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
+    const { jobs } = apiRequest;
+
+    try {
+      let item;
+
+      for (item in jobs) {
+        const saveDataBase = new Job(jobs[item]);
+
+        saveDataBase
+          .save()
+          .then(() => {
+            console.log('Item was save successfully.');
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+
+      return res.send(200, 'Save successfully.');
+    } catch (err) {
+      return res
+        .status(400)
+        .json({ error: 'Save fails.', messages: err.inner });
+    }
+  }
+}
+
+module.exports = new JobController();
