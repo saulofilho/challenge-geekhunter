@@ -1,6 +1,6 @@
-# Food Facts API Rest NodeJS
+# Matches GeekHunter API Rest
 
-A scrapping bot on <https://world.openfoodfacts.org/> using NodeJS, MongoDB, Docker and Puppeteer.
+Backend using NodeJS, MongoDB and Docker.
 
 The API is [REST API](https://en.wikipedia.org/wiki/Representational_State_Transfer "RESTful").
 Currently, return format for all endpoints is [JSON](https://json.org/ "JSON").
@@ -10,7 +10,9 @@ Currently, return format for all endpoints is [JSON](https://json.org/ "JSON").
 This project was developed with the following technologies:
 
 - [axios](https://github.com/axios/axios)
+- [mongodb](https://www.mongodb.com/)
 - [mongoose](https://mongoosejs.com/)
+- [docker](https://docker.com/)
 - [express](https://expressjs.com/)
 - [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
@@ -18,12 +20,12 @@ This project was developed with the following technologies:
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js][nodejs] or higher + [Yarn][yarn] or higher installed on your computer. From your command line:
 
-```bash
+``` bash
 # Clone this repository
-$ git clone https://github.com/saulofilho/challenge-20201026
+$ git clone https://github.com/saulofilho/challenge-geekhunter
 
 # Go into the repository
-$ cd challenge-20201026 && cd api
+$ cd challenge-geekhunter && cd api
 
 # Install dependencies
 $ npm install
@@ -58,34 +60,88 @@ By default the objects will be sorted by `imported_t` in order to have the most 
 
 URL to query                   | Description
 ------------------------------ | ---------------------------
-`GET` `/`             | Return `200`.
-`GET` `/product/`           | Get a product by code eg. `/product/7622210713780`
-`GET` `/products`             | Return a list of `Products`.
+`GET` `/`                      | Return `200`.
+`GET` `/candidate/id`          | Get a candidate by code eg. `/candidate/31562`
+`GET` `/candidates`            | Return a list of `Candidates`.
+`POST` `/candidates`           | Save a list of `Candidates`.
+`GET` `/job/id`                | Get a job by code eg. `/job/33868`
+`GET` `/jobs`                  | Return a list of `Jobs`.
+`POST` `/jobs`                 | Save a list of `Jobs`.
 
 ### Example
 
 #### Request
 
 ``` json
-GET /product/7622210713780
+GET /candidate/31562
 ```
 
 #### Return
 
 ``` json
   {
-    "status": "imported",
-    "_id": "602445b6f090bb0c5c34fedf",
-    "code": 7622210713780,
-    "barcode": "7622210713780(EAN / EAN-13)",
-    "imported_t": "2021-02-10T20:44:38.442Z",
-    "url": "https://world.openfoodfacts.org/product/7622210713780/belvita-petit-dejeuner-original-lu",
-    "product_name": "Belvita Petit Déjeuner Original - LU - 400 g (8× 50 g e)",
-    "quantity": "400 g (8× 50 g e)",
-    "categories": "Snacks, Sweet snacks, Breakfasts, Biscuits and cakes, Biscuits, Chocolate biscuits, Dark chocolate biscuits",
-    "packaging": "Etui-carton, Sachet-plastique, Boite",
-    "brands": "LU",
-    "image_url": "https://static.openfoodfacts.org/images/products/762/221/071/3780/front_fr.116.200.jpg",
+    "technologies": [
+      {
+        "name": "Java",
+        "is_main_tech": true
+      },
+      {
+        "name": "Python",
+        "is_main_tech": false
+      },
+      {
+        "name": "Java (Android)",
+        "is_main_tech": false
+      },
+      {
+        "name": "Ruby",
+        "is_main_tech": false
+      },
+      {
+        "name": "Objective-C (iOS)",
+        "is_main_tech": false
+      },
+      {
+        "name": "Ruby on Rails",
+        "is_main_tech": false
+      },
+      {
+        "name": "Hibernate",
+        "is_main_tech": false
+      },
+      {
+        "name": "Linux",
+        "is_main_tech": false
+      },
+      {
+        "name": "Web Services",
+        "is_main_tech": false
+      },
+      {
+        "name": "RESTful",
+        "is_main_tech": false
+      },
+      {
+        "name": "Docker",
+        "is_main_tech": false
+      },
+      {
+        "name": "Elasticsearch",
+        "is_main_tech": false
+      },
+      {
+        "name": "Node.js",
+        "is_main_tech": true
+      },
+      {
+        "name": "Spring",
+        "is_main_tech": false
+      }
+    ],
+    "_id": "609d647721f3844e76868816",
+    "id": 31562,
+    "city": "Rio de Janeiro - RJ",
+    "experience": "12+ years",
     "__v": 0
   }
 ```
