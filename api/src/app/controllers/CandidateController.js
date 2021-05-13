@@ -6,6 +6,10 @@ class CandidateController {
   async index(req, res) {
     const candidate = await Candidate.find({ id: req.params.id });
 
+    if (candidate === undefined || candidate.length == 0) {
+      res.json({ error: 'Data not found!' });
+    }
+
     return res.json(candidate);
   }
 

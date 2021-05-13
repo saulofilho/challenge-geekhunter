@@ -6,6 +6,10 @@ class JobController {
   async index(req, res) {
     const job = await Job.find({ id: req.params.id });
 
+    if (job === undefined || job.length == 0) {
+      res.json({ error: 'Data not found!' });
+    }
+
     return res.json(job);
   }
 
