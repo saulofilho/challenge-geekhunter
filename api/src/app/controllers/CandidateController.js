@@ -33,28 +33,22 @@ class CandidateController {
 
     const { candidates } = apiRequest;
 
-    try {
-      let item;
+    let item;
 
-      for (item in candidates) {
-        const saveDataBase = new Candidate(candidates[item]);
+    for (item in candidates) {
+      const saveDataBase = new Candidate(candidates[item]);
 
-        saveDataBase
-          .save()
-          .then(() => {
-            console.log('Item was save successfully.');
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-
-      return res.send(200, 'Save successfully.');
-    } catch (err) {
-      return res
-        .status(400)
-        .json({ error: 'Save fails.', messages: err.inner });
+      saveDataBase
+        .save()
+        .then(() => {
+          console.log('Item was save successfully.');
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+
+    return res.send(200, 'Save successfully.');
   }
 }
 

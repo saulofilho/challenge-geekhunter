@@ -12,6 +12,7 @@ routes.get('/', (req, res) => {
     res.send(500, error);
   }
 });
+
 routes.get('/candidate/:id', CandidateController.index);
 routes.get('/candidates', CandidateController.indexAll);
 routes.post('/candidates', CandidateController.store);
