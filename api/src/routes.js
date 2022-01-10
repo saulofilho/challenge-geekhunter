@@ -14,6 +14,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/candidate/:id', CandidateController.index);
+routes.get('/candidates/search', CandidateController.indexTeste);
 routes.get('/candidates', CandidateController.indexAll);
 routes.post('/candidates', CandidateController.store);
 

@@ -21,6 +21,14 @@ class CandidateController {
     return res.json(candidates);
   }
 
+  async indexTeste(req, res) {
+    const { city } = req.query;
+    console.log('xxx->>', city);
+    const candidate = await Candidate.find({ city });
+
+    return res.json(candidate);
+  }
+
   async store(req, res) {
     const apiRequest = await axios
       .get(`https://geekhunter-recruiting.s3.amazonaws.com/code_challenge.json`)
